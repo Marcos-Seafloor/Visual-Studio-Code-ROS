@@ -3,27 +3,32 @@
     // for the documentation about the tasks.json format
     "version": "2.0.0",
     "tasks": [
+     {
+         "label": "catkin build",
+         "type": "shell",
+         "command": "catkin build --cmake-args -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_STANDARD=11",
+         "problemMatcher": [],
+         "group": {
+             "kind": "build",
+             "isDefault": true
+         }
+     },
+     {
+         "label": "catkin run_tests",
+         "type": "shell",
+         "command": "catkin run_tests",
+         "problemMatcher": [],
+         "group": {
+             "kind": "test",
+             "isDefault": true
+                 }
+             },
+         ]
+     },
         {
-            "label": "catkin_make",
+            "label": "vorc_simulation",
             "type": "shell",
-            "command": "catkin_make",
-            "args": [
-                "-j$(nproc)",
-                "-DFranka_DIR:PATH=${workspaceFolder}/dependencies/libfranka/build",
-                "-DCMAKE_BUILD_TYPE=Release",
-                "-DCMAKE_EXPORT_COMPILE_COMMANDS=1",
-                "-DCMAKE_CXX_STANDARD=14"
-            ],
-            "problemMatcher": [],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        },
-        {
-            "label": "panda_simulation",
-            "type": "shell",
-            "command": "roslaunch panda_simulation simulation.launch",
+            "command": "roslaunch vorc_gazebo marina.launch",
             "problemMatcher": [],
             "group": {
                 "kind": "test",
@@ -31,9 +36,9 @@
             }
         },
         {
-            "label": "panda_simulation docker",
+            "label": "vorc_simulation docker",
             "type": "shell",
-            "command": "roslaunch panda_simulation simulation.launch gui:=false",
+            "command": "roslaunch vorc_gazebo marina.launch gui:=false",
             "problemMatcher": [],
             "group": {
                 "kind": "test",
